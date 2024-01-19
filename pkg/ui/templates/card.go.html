@@ -1,0 +1,35 @@
+{{/* Takes: ui.GoLink */}}
+{{define "card"}}
+<article class="border-solid rounded-md bg-white shadow-sm hover:shadow-md p-8  w-full md:w-3/4">
+    <div class="flex flex-row align-middle">
+      <div class="flex-1 pr-2">
+        <h2 class="text-3xl">{{.Title}}</h2>
+        <h6 class="text-sm text-gray-500">{{.Description}}</h6>
+      </div>
+      <div class="flex-1 flex-grow-1 flex flex-row flex-wrap justify-end items-center gap-y-0.5 gap-x-0.5">
+        {{range .Links}}{{template "card-chip" .}}{{end}}
+      </div>
+    </div>
+  </article>
+{{end}}
+
+{{define "card-chip"}}
+{{- if (contains ":" .From) -}}
+<button
+  hx-get="/_/args-form?from={{.From}}&to={{.To}}"
+  hx-trigger="click"
+  hx-target="#args-form"
+  hx-sync="this:replace"
+>{{ template "card-chip-content" . }}</button>
+{{- else -}}
+  <a href="{{ .To }}">{{ template "card-chip-content" . }}</a>
+{{ end }}
+{{end}}
+
+{{define "card-chip-content"}}
+<span
+  class="py-0.5 px-1 m-1 h-max rounded-sm bg-green-200 border-solid border border-green-500 text-green-800 text-sm font-mono hover:shadow-md"
+>
+{{- .From -}}
+</span>
+{{end}}

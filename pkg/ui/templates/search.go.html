@@ -1,0 +1,14 @@
+{{define "search-bar"}}
+<div class="w-full">
+  <input
+    type="search"
+    name="q"
+    hx-get="/_/search"
+    hx-trigger="keyup changed delay:250ms, search"
+    hx-target="#links"
+    hx-sync="this:replace"
+    class="px-4 py-2 border border-gray rounded-md shadow-sm hover:shadow-md focus:shadow-md w-full md:w-1/2"
+    placeholder="Search"
+  />
+</div>
+{{end}}

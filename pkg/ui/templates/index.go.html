@@ -1,0 +1,39 @@
+{{define "index" }}
+<!DOCTYPE html>
+<html lang="en" class="h-svh">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{if .Query}}Go Links: {{.Query}}{{else}}Go Links{{end}}</title>
+    <link rel="stylesheet" href="/_/static/index.css">
+    {{template "tailwind" .}}
+    {{template "htmx" .}}
+  </head>
+  <body class="h-svh bg-gray-100">
+    <main class="px-8 p-6">
+      {{template "header" . }}
+      <div id="links" class="space-y-4 flex flex-col items-center">
+      {{template "links" .GoLinks }}
+      </div>
+      {{template "form-container" .}}
+    </main>
+</html>
+{{end}}
+
+{{define "header"}}
+<header class="text-center mb-8">
+  <h1 class="text-5xl mb-4">Go Links</h1>
+  {{template "search-bar" .}}
+</header>
+{{end}}
+
+{{define "links"}}
+{{- if not . -}}
+<p class="text-xl text-gray-500">No results...</p>
+{{- else -}}
+{{- range . -}}
+{{template "card" .}}
+{{- end -}}
+{{- end -}}
+{{end}}
