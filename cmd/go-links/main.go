@@ -23,7 +23,8 @@ func main() {
 
 type Cli struct {
 	ConfigFile kong.ConfigFlag `name:"config" short:"c"`
-	Targets    config.Targets  `name:"targets"`
+	Addr       string          `name:"address" required:"" default:":8080"`
+	Targets    config.Targets  `name:"targets" required:""`
 }
 
 func (cli *Cli) Run() error {
@@ -109,5 +110,5 @@ func (cli *Cli) Run() error {
 		})
 	})
 
-	return srv.Start(":8080")
+	return srv.Start(cli.Addr)
 }

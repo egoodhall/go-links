@@ -7,7 +7,7 @@ app = "g6l-go-links"
 primary_region = "bos"
 
 [build]
-  dockerfile = "./Dockerfile"
+  dockerfile = "./cmd/go-links/Dockerfile"
 
 [env]
   PORT = "8080"
