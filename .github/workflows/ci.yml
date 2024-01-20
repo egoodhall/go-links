@@ -17,5 +17,5 @@ jobs:
       uses: ko-build/setup-ko@v0.6
     
     - name: Build container
-      run: ko build --bare ./cmd/go-links
+      run: ko build --platform=linux/amd64,linux/arm64 --bare ./cmd/go-links
     
