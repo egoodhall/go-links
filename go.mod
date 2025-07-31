@@ -1,6 +1,6 @@
 module github.com/egoodhall/go-links
 
-go 1.21.3
+go 1.24.5
 
 require (
 	github.com/Masterminds/sprig v2.22.0+incompatible
